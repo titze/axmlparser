@@ -305,10 +305,10 @@ public class AndroidManifestParser {
 							// below this level.
 						}
 						if (mCurrentNode != null) {
-							for (int i = 0; i < attributes.getLength(); i++) {
-								System.out.println("  we have these attributes: " + attributes.getQName(i) + " - "
-										+ attributes.getValue(attributes.getQName(i)));
-							}
+//							for (int i = 0; i < attributes.getLength(); i++) {
+//								System.out.println("  we have these attributes: " + attributes.getQName(i) + " - "
+//										+ attributes.getValue(attributes.getQName(i)));
+//							}
 							if (AndroidManifest.NODE_ACTION.equals(localName)) {
 								// get the name attribute
 								String action = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_NAME, true /* hasNamespace */);

@@ -227,7 +227,7 @@ public final class AndroidManifest {
 		String result = xPath.evaluate("/" + NODE_MANIFEST + "/" + NODE_USES_PERMISSION + "/@" + AndroidXPathFactory.DEFAULT_NS_PREFIX + ":"
 				+ ATTRIBUTE_MIN_SDK_VERSION, new InputSource(manifestFile.getContents()));
 
-		System.out.println("Permissions " + result);
+//		System.out.println("Permissions " + result);
 	}
 
 	/**
