@@ -504,14 +504,17 @@ public class AndroidManifestParser {
 				}
 				// get the exported flag.
 				String exportedStr = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_EXPORTED, true);
-				boolean exported = exportedStr == null || exportedStr.toLowerCase().equals("true"); //$NON-NLS-1$
+				Boolean exported = null;
+				if (exportedStr != null) {
+					exported = exportedStr.toLowerCase().equals("true"); //$NON-NLS-1$
+				}
 				String enabledStr = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_ENABLED, true);
 				boolean enabled = enabledStr == null || enabledStr.toLowerCase().equals("true");
 				// get the permission associated with an SRPNode:
 				String permission = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_PERMISSION, true);
-				if (permission != null)
-					System.out.println("Found permission \"" + permission + "\" for SRPNode " + serviceName);
-				mCurrentNode = new SRPNode(serviceName, exported, enabled, permission, superClassName);
+				String readpermission = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_READ_PERMISSION, true);
+				String writepermission = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_WRITE_PERMISSION, true);
+				mCurrentNode = new SRPNode(serviceName, exported, enabled, permission, readpermission, writepermission, superClassName);
 				HashMap<String, List<SRPNode>> srpToNodeHash = mManifestData.getSRPToNodeHash();
 				List<SRPNode> l = srpToNodeHash.get(superClassName);
 				if (l == null) {

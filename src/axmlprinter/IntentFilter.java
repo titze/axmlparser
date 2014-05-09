@@ -40,4 +40,25 @@ public final class IntentFilter implements Serializable {
 	public int getPriority() {
 		return priority;
 	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Actions = [");
+		for(String s: mActions) {
+			sb.append(s + ", ");
+		}
+		sb.replace(sb.lastIndexOf(","), sb.length(), "], ");
+		sb.append("Categories = [");
+		for(String s: mCategories) {
+			sb.append(s + ", ");
+		}
+		sb.replace(sb.lastIndexOf(","), sb.length(), "], ");
+		sb.append("Datas = [");
+		for(String s: mDatas) {
+			sb.append(s + ", ");
+		}
+		sb.replace(sb.lastIndexOf(","), sb.length(), "], ");
+		sb.append("Priority = " + priority);
+		return sb.toString();
+	}
 }

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public final class SRPNode implements Serializable {
 	public final String mName;
-	final boolean mIsExported;
+	final Boolean mIsExported;
 	final boolean mIsEnabled;
 	List<String> mActions = new ArrayList<String>();
 
@@ -23,6 +23,8 @@ public final class SRPNode implements Serializable {
 	public final String mPermission;
 	private IntentFilter lastIntentFilter;
 	private List<IntentFilter> mIntentFilter = new ArrayList<IntentFilter>();
+	private String mWritePermission;
+	private String mReadPermission;
 
 	/**
 	 * 
@@ -41,11 +43,13 @@ public final class SRPNode implements Serializable {
 	 *            {@link SdkConstants#CLASS_PROVIDER
 	 *            SdkConstants.CLASS_PROVIDER}
 	 */
-	public SRPNode(String mName, boolean mIsExported, boolean mIsEnabled, String mPermission, String mCategory) {
+	public SRPNode(String mName, Boolean mIsExported, boolean mIsEnabled, String mPermission, String readPermission, String writePermission, String mCategory) {
 		this.mName = mName;
 		this.mIsExported = mIsExported;
 		this.mIsEnabled = mIsEnabled;
 		this.mPermission = mPermission;
+		this.mReadPermission = readPermission;
+		this.mWritePermission = writePermission;
 		this.mCategory = mCategory;
 	}
 
@@ -56,6 +60,14 @@ public final class SRPNode implements Serializable {
 	 */
 	public String getPermission() {
 		return mPermission;
+	}
+	
+	public String getReadPermission() {
+		return mReadPermission;
+	}
+	
+	public String getWritePermission() {
+		return mWritePermission;
 	}
 
 	public List<String> getActions() {
@@ -78,7 +90,7 @@ public final class SRPNode implements Serializable {
 		return mName;
 	}
 
-	public boolean isExported() {
+	public Boolean isExported() {
 		return mIsExported;
 	}
 

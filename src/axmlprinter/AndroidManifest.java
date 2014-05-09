@@ -56,6 +56,9 @@ public final class AndroidManifest {
 	public final static String ATTRIBUTE_REQ_TOUCHSCREEN = "reqTouchScreen";
 	public static final String ATTRIBUTE_USES_PERMISSION = "usesPermission";
 	public static final String ATTRIBUTE_PERMISSION = "permission";
+	
+	public static final String ATTRIBUTE_READ_PERMISSION = "readPermission";
+	public static final String ATTRIBUTE_WRITE_PERMISSION = "writePermission";
 
 	/**
 	 * Returns an {@link IAbstractFile} object representing the manifest for the
