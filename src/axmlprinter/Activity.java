@@ -45,6 +45,16 @@ public final class Activity implements Serializable {
 	public boolean isNotExported() {
 		return (mIsExported == 0);
 	}
+	
+	public String getExportedString() {
+		if (mIsExported == -1) {
+			return "null";
+		} else if (mIsExported == 0) {
+			return "false";
+		} else {
+			return "true";
+		}
+	}
 
 	public boolean hasAction() {
 		return mHasAction;

@@ -8,7 +8,8 @@ import java.util.List;
  */
 public final class SRPNode implements Serializable {
 	public final String mName;
-	final Boolean mIsExported;
+	// -1 for not found 0 false 1 true
+	final int mIsExported;
 	final boolean mIsEnabled;
 	List<String> mActions = new ArrayList<String>();
 
@@ -43,7 +44,7 @@ public final class SRPNode implements Serializable {
 	 *            {@link SdkConstants#CLASS_PROVIDER
 	 *            SdkConstants.CLASS_PROVIDER}
 	 */
-	public SRPNode(String mName, Boolean mIsExported, boolean mIsEnabled, String mPermission, String readPermission, String writePermission, String mCategory) {
+	public SRPNode(String mName, int mIsExported, boolean mIsEnabled, String mPermission, String readPermission, String writePermission, String mCategory) {
 		this.mName = mName;
 		this.mIsExported = mIsExported;
 		this.mIsEnabled = mIsEnabled;
@@ -90,8 +91,20 @@ public final class SRPNode implements Serializable {
 		return mName;
 	}
 
-	public Boolean isExported() {
+	public boolean isExported() {
+		return mIsExported == 1;
+	}
+	
+	public int getExported() {
 		return mIsExported;
+	}
+	
+	public String getExportedString() {
+		if (mIsExported == -1) {
+			return "null";
+		} else {
+			return (mIsExported == 1 ? "true" : "false");
+		}
 	}
 
 	public boolean isEnabled() {

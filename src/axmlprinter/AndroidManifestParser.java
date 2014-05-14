@@ -504,9 +504,9 @@ public class AndroidManifestParser {
 				}
 				// get the exported flag.
 				String exportedStr = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_EXPORTED, true);
-				Boolean exported = null;
+				int exported = -1;
 				if (exportedStr != null) {
-					exported = exportedStr.toLowerCase().equals("true"); //$NON-NLS-1$
+					exported = exportedStr.toLowerCase().equals("true") ? 1:0; //$NON-NLS-1$
 				}
 				String enabledStr = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_ENABLED, true);
 				boolean enabled = enabledStr == null || enabledStr.toLowerCase().equals("true");
