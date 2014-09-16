@@ -3,6 +3,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xml.sax.Attributes;
+
 /**
  * Activity info obtained from the manifest.
  */
@@ -14,6 +16,8 @@ public final class Activity implements Serializable {
 	private boolean mHasLauncherCategory = false;
 	private List<IntentFilter> mIntentFilter = new ArrayList<IntentFilter>();
 	private IntentFilter lastIntentFilter;
+	private Attributes attributes;
+	private ArrayList<StringAttribute> stringAttributes;
 
 	public Activity(String name) {
 		mName = name;
@@ -98,5 +102,35 @@ public final class Activity implements Serializable {
 
 	public List<IntentFilter> getIntentFilters() {
 		return mIntentFilter;
+	}
+
+	public void setAttributes(Attributes attributes) {
+		this.attributes = attributes;
+		this.stringAttributes = new ArrayList<StringAttribute>();
+		for (int i = 0; i < attributes.getLength(); i++) {
+			this.stringAttributes.add(new StringAttribute(attributes.getLocalName(i), attributes.getValue(i)));
+		}
+	}
+	public Attributes getAttributes() {
+		return attributes;
+	}
+	
+	public ArrayList<StringAttribute> getStringAttributes() {
+		return stringAttributes;
+	}
+
+	public class StringAttribute {
+		private String name;
+		private String value;
+		public String getName() {
+			return name;
+		}
+		public String getValue() {
+			return value;
+		}
+		public StringAttribute (String name, String value) {
+			this.name = name;
+			this.value = value;
+		}
 	}
 }

@@ -466,8 +466,10 @@ public class AndroidManifestParser {
 				} else {
 					boolean explicitlyExported = exportedStr.toLowerCase().equals("true");
 					mCurrentActivity = new Activity(activityName, explicitlyExported);
+					
 				}
 				mManifestData.mActivities.add(mCurrentActivity);
+				mCurrentActivity.setAttributes(attributes);
 
 				if (mErrorHandler != null) {
 					mErrorHandler.checkClass(mLocator, activityName, SdkConstants.CLASS_ACTIVITY, true /* testVisibility */);
