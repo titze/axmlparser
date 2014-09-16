@@ -3,6 +3,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xml.sax.Attributes;
+
 /**
  * service/receiver/provider nodes.
  */
@@ -26,6 +28,7 @@ public final class SRPNode implements Serializable {
 	private List<IntentFilter> mIntentFilter = new ArrayList<IntentFilter>();
 	private String mWritePermission;
 	private String mReadPermission;
+	private ArrayList<StringAttribute> stringAttributes;
 
 	/**
 	 * 
@@ -122,5 +125,15 @@ public final class SRPNode implements Serializable {
 
 	public List<IntentFilter> getIntentFilters() {
 		return mIntentFilter;
+	}
+	public void setAttributes(Attributes attributes) {
+		this.stringAttributes = new ArrayList<StringAttribute>();
+		for (int i = 0; i < attributes.getLength(); i++) {
+			this.stringAttributes.add(new StringAttribute(attributes.getLocalName(i), attributes.getValue(i)));
+		}
+	}
+	
+	public ArrayList<StringAttribute> getStringAttributes() {
+		return stringAttributes;
 	}
 }

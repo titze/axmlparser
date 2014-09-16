@@ -517,6 +517,7 @@ public class AndroidManifestParser {
 				String readpermission = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_READ_PERMISSION, true);
 				String writepermission = getAttributeValue(attributes, AndroidManifest.ATTRIBUTE_WRITE_PERMISSION, true);
 				mCurrentNode = new SRPNode(serviceName, exported, enabled, permission, readpermission, writepermission, superClassName);
+				mCurrentNode.setAttributes(attributes);
 				HashMap<String, List<SRPNode>> srpToNodeHash = mManifestData.getSRPToNodeHash();
 				List<SRPNode> l = srpToNodeHash.get(superClassName);
 				if (l == null) {
